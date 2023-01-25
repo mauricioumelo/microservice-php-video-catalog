@@ -1,0 +1,16 @@
+{
+  "name": "mauricioumelo/app-php-catalog-video",
+  "description": "App with PHP - Catalog Video",
+  "authors": [
+    {
+      "name": "Mauricio Uchoa",
+      "email": "mauricioumelo@email.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Core\\": "src/Core/"
+    }
+  },
+  "require": {}
+}
