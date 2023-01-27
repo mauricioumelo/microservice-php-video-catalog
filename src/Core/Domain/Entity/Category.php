@@ -13,6 +13,7 @@ class Category
         protected string $description ='',
         protected bool $isActive = true,
     ) {
+        $this->validate();
     }
 
     public function activate(): void
@@ -23,5 +24,10 @@ class Category
     public function disable(): void
     {
         $this->isActive = false;
+    }
+
+    private function validate()
+    {
+
     }
 }

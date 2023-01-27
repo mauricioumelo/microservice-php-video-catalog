@@ -4,10 +4,11 @@ namespace Core\Domain\Entity\Traits;
 
 use Exception;
 
-trait MagicMethodsTrait{
-
-    public function __get($propety){
-        if(isset($this->{$propety})){
+trait MagicMethodsTrait
+{
+    public function __get($propety)
+    {
+        if (isset($this->{$propety})) {
             return $this->{$propety};
         }
 
@@ -18,8 +19,10 @@ trait MagicMethodsTrait{
     public function update(array $values)
     {
         foreach ($values as $propety => $value) {
-            if(isset($this->{$propety})){
+            if (isset($this->{$propety})) {
                 $this->{$propety} = $value;
+                if (isset($this->validate)) $this->validate();
+               
             }
         }
     }

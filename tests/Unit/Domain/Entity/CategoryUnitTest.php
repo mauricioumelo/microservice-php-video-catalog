@@ -63,4 +63,13 @@ class CategoryUnitTest extends TestCase
         $this->assertNotEquals('New Category', $category->name);
         $this->assertNotEquals('this is description of New Category', $category->description);
     }
+
+    public function test_exeception_name()
+    {
+        $category = new Category(
+            name: '',
+        );
+
+        $this->expectException('entered "name" has less than 4 characters');
+    }
 }
