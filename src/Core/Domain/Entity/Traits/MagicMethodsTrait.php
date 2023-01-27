@@ -7,7 +7,7 @@ use Exception;
 trait MagicMethodsTrait{
 
     public function __get($propety){
-        if($this->{$propety}){
+        if(isset($this->{$propety})){
             return $this->{$propety};
         }
 
