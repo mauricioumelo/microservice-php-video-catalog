@@ -3,6 +3,7 @@
 namespace Tests\Domain\Entity;
 
 use Core\Domain\Entity\Category;
+use Core\Domain\Exception\EntityValidationException;
 use PHPUnit\Framework\TestCase;
 
 class CategoryUnitTest extends TestCase
@@ -66,10 +67,15 @@ class CategoryUnitTest extends TestCase
 
     public function test_exeception_name()
     {
-        $category = new Category(
-            name: '',
-        );
+        try {
+            $category = new Category(
+                name: '',
+            );
+            $this->expectExceptionMessage('entered "name" is empty');
 
-        $this->expectException('entered "name" has less than 4 characters');
+            $this->assertTrue(false);
+        } catch (\Throwable $th) {
+            $this->assertInstanceOf(EntityValidationException::class, $th);
+        }
     }
 }
