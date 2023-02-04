@@ -6,24 +6,29 @@ use Exception;
 
 trait MagicMethodsTrait
 {
-    public function __get($propety)
+    public function __get($property)
     {
-        if (isset($this->{$propety})) {
-            return $this->{$propety};
+        if (isset($this->{$property})) {
+            return $this->{$property};
         }
 
         $classname = get_class($this);
-        throw new Exception("this propety not found in {$classname}.");
+        throw new Exception("this property not found in {$classname}.");
     }
 
     public function update(array $values)
     {
-        foreach ($values as $propety => $value) {
-            if (isset($this->{$propety})) {
-                $this->{$propety} = $value;
+        foreach ($values as $property => $value) {
+            if (isset($this->{$property})) {
+                $this->{$property} = $value;
                 if (isset($this->validate)) $this->validate();
                
             }
         }
+    }
+
+    public function id(): string
+    {
+        return (string) $this->id;
     }
 }
