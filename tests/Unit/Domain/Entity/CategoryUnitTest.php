@@ -70,8 +70,36 @@ class CategoryUnitTest extends TestCase
         $this->expectException(EntityValidationException::class);
         $this->expectExceptionMessage('field name is required');
 
-        $category = new Category(
+        new Category(
             name: '',
+        );
+
+
+        $this->assertTrue(false);
+    }
+
+    public function test_exception_description_max_length()
+    {
+        $this->expectException(EntityValidationException::class);
+        $this->expectExceptionMessage('field description has exceeded the character limit');
+
+        new Category(
+            name: 'nome',
+            description:random_bytes(256)
+        );
+
+
+        $this->assertTrue(false);
+    }
+
+    public function test_exception_description_min_length()
+    {
+        $this->expectException(EntityValidationException::class);
+        $this->expectExceptionMessage('field description has less than 10 characters');
+
+        new Category(
+            name: 'nome',
+            description:random_bytes(8)
         );
 
 

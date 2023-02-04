@@ -39,7 +39,7 @@ class Category
             'name.max' => 'field name has exceeded the character limit',
             'name.min' => 'field name has less than 3 characters',
             'description.max' =>'field description has exceeded the character limit',
-            'description.min' =>'field description has less than 3 characters',
+            'description.min' =>'field description has less than 10 characters',
         ];
 
         DomainValidation::validate(['name' => $this->name, 'description' => $this->description], $rules, $message);
