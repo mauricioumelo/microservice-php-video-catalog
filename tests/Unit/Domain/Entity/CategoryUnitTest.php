@@ -65,17 +65,16 @@ class CategoryUnitTest extends TestCase
         $this->assertNotEquals('this is description of New Category', $category->description);
     }
 
-    public function test_exeception_name()
+    public function test_exception_name()
     {
-        try {
-            $category = new Category(
-                name: '',
-            );
-            $this->expectExceptionMessage('entered "name" is empty');
+        $this->expectException(EntityValidationException::class);
+        $this->expectExceptionMessage('field name is required');
 
-            $this->assertTrue(false);
-        } catch (\Throwable $th) {
-            $this->assertInstanceOf(EntityValidationException::class, $th);
-        }
+        $category = new Category(
+            name: '',
+        );
+
+
+        $this->assertTrue(false);
     }
 }

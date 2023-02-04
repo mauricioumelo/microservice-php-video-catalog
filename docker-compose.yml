@@ -11,6 +11,7 @@ services:
       - .:/var/www
     networks:
       - app-php
+    restart: always
 
   nginx:
     image: nginx:latest
@@ -22,6 +23,7 @@ services:
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
     networks:
       - app-php
+    restart: always
 
 networks:
   app-php:

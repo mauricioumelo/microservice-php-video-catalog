@@ -4,6 +4,7 @@ namespace Core\Domain\Entity;
 
 use Core\Domain\Entity\Traits\MagicMethodsTrait;
 use Core\Domain\Exception\EntityValidationException;
+use Core\Domain\Validation\DomainValidation;
 
 class Category
 {
@@ -29,16 +30,18 @@ class Category
 
     private function validate()
     {
-        if (empty($this->name)) {
-            throw new EntityValidationException('entered "name" is empty');
-        }
+        $rules = [
+            'name'=> 'required|max:255|min:3',
+            'description' => 'max:255|min:10'
+        ];
+        $message = [
+            'name.required' => 'field name is required',
+            'name.max' => 'field name has exceeded the character limit',
+            'name.min' => 'field name has less than 3 characters',
+            'description.max' =>'field description has exceeded the character limit',
+            'description.min' =>'field description has less than 3 characters',
+        ];
 
-        if (!empty($this->name) && strlen($this->name) > 255 && strlen($this->name) < 3 ) {
-            throw new EntityValidationException('entered "name" has less than 3 characters');
-        }
-
-        if (!empty($this->description) && strlen($this->description) > 255 && strlen($this->description) < 10) {
-            throw new EntityValidationException('entered "name" has less than 10 characters');
-        }
+        DomainValidation::validate(['name' => $this->name, 'description' => $this->description], $rules, $message);
     }
 }
