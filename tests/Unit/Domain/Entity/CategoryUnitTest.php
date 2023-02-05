@@ -19,6 +19,8 @@ class CategoryUnitTest extends TestCase
 
         $this->assertNotEmpty($category->id());
         $this->assertIsString($category->id());
+        $this->assertNotEmpty($category->createdAt());
+        $this->assertIsString($category->createdAt());
         $this->assertEquals('New Category', $category->name);
         $this->assertEquals('this is description of New Category', $category->description);
         $this->assertTrue($category->isActive);
@@ -66,6 +68,7 @@ class CategoryUnitTest extends TestCase
         ]);
 
         $this->assertEquals($categoryOld->id(), $category->id());
+        $this->assertEquals($categoryOld->createdAt(), $category->createdAt());
         $this->assertNotEquals('New Category', $category->name);
         $this->assertNotEquals('this is description of New Category', $category->description);
     }
