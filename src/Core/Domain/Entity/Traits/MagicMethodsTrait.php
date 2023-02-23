@@ -13,7 +13,7 @@ trait MagicMethodsTrait
         }
 
         $classname = get_class($this);
-        throw new Exception("this property not found in {$classname}.");
+        throw new Exception("this property {$property} not found in {$classname}.");
     }
 
     public function update(array $values)
