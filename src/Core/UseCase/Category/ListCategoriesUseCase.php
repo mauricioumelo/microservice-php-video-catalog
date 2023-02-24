@@ -25,10 +25,10 @@ class ListCategoriesUseCase
         return new ListCategoriesOutputDto(
             items: $categories->items(),
             total: $categories->total(),
-            lastPage: $categories->lastPage(),
-            firstPage: $categories->firstPage(),
-            currentPage: $categories->currentPage(),
-            perPage: $categories->perPage(),
+            last_page: $categories->lastPage(),
+            first_page: $categories->firstPage(),
+            current_page: $categories->currentPage(),
+            per_page: $categories->perPage(),
             to: $categories->to(),
             from: $categories->from(),
         );

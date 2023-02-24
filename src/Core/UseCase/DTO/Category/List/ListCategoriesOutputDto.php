@@ -7,14 +7,14 @@ use Core\Domain\Repository\PaginateInterface;
 class ListCategoriesOutputDto
 {
     public function __construct(
-        protected array $items,
-        protected int $total,
-        protected int $lastPage,
-        protected int $firstPage,
-        protected int $currentPage,
-        protected int $perPage,
-        protected int $to,
-        protected int $from,
+        public array $items,
+        public int $total,
+        public int $last_page,
+        public int $first_page,
+        public int $current_page,
+        public int $per_page,
+        public int $to,
+        public int $from,
     ) {
     }
 }
