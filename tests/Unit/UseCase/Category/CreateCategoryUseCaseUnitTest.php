@@ -60,6 +60,6 @@ class CreateCategoryUseCaseUnitTest extends TestCase
         $useCase = new CreateCategoryUseCase($this->spyRepo);
 
         $responseDto = $useCase->execute($this->mockDtoInput);
-        $this->spyRepo->shouldHaveReceived('create');
+        $this->spyRepo->shouldHaveReceived('create')->once();
     }
 }

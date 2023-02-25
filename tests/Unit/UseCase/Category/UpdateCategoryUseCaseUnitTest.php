@@ -28,7 +28,6 @@ class UpdateCategoryUseCaseUnitTest extends TestCase
         $this->uuid = (string) Uuid::uuid4()->toString();
         $this->created_at = new DateTime('now');
         $this->created_at = $this->created_at->format('Y-m-d H:i:s');
-        var_dump($this->created_at);
         $this->mockEntity = Mockery::mock(Category::class, [
             'TEST UPDATE CATEGORY',
             $this->uuid,
