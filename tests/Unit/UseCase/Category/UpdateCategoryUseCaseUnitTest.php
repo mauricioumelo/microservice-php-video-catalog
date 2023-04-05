@@ -14,13 +14,18 @@ use Ramsey\Uuid\Uuid;
 
 class UpdateCategoryUseCaseUnitTest extends TestCase
 {
-
     protected $mockDtoInput;
+
     protected $spyRepo;
+
     protected $mockRepo;
+
     protected $mockEntity;
+
     protected $mockEntityUpdated;
+
     protected $uuid;
+
     protected $created_at;
 
     public function setUp(): void
@@ -33,7 +38,7 @@ class UpdateCategoryUseCaseUnitTest extends TestCase
             $this->uuid,
             '',
             true,
-            $this->created_at
+            $this->created_at,
         ]);
 
         $this->mockRepo = Mockery::mock(stdClass::class, CategoryRepositoryInterface::class);
@@ -50,7 +55,7 @@ class UpdateCategoryUseCaseUnitTest extends TestCase
             $this->mockEntity->id(),
             'description updated',
             $this->mockEntity->isActive,
-            $this->mockEntity->createdAt()
+            $this->mockEntity->createdAt(),
         ]);
 
         $this->mockEntityUpdated->shouldReceive('id')->andReturn($this->uuid);
@@ -73,9 +78,9 @@ class UpdateCategoryUseCaseUnitTest extends TestCase
             [
                 $this->uuid,
                 [
-                    "name" => 'Category updated',
+                    'name' => 'Category updated',
                     'description' => 'description updated',
-                ]
+                ],
             ]
         );
 

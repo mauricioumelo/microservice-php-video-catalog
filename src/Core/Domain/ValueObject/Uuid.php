@@ -17,6 +17,7 @@ class Uuid
     {
         return $this->value;
     }
+
     public static function random(): self
     {
         return new self(RamseyUuid::uuid4()->toString());
@@ -24,7 +25,7 @@ class Uuid
 
     private function ensureIsValid()
     {
-        if (!RamseyUuid::isValid($this->value)) {
+        if (! RamseyUuid::isValid($this->value)) {
             throw new InvalidArgumentException(sprintf('<&s> does not allow the value <%s>.', static::class, $this->value));
         }
     }

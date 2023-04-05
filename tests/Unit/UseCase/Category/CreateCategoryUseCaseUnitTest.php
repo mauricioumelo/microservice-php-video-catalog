@@ -16,10 +16,15 @@ use stdClass;
 class CreateCategoryUseCaseUnitTest extends TestCase
 {
     protected $mockEntity;
+
     protected $mockDtoInput;
+
     protected $spyRepo;
+
     protected $mockRepo;
+
     protected $uuid;
+
     protected $date;
 
     public function setUp(): void

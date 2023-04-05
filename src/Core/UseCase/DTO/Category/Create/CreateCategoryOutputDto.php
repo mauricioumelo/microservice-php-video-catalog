@@ -2,7 +2,6 @@
 
 namespace Core\UseCase\DTO\Category\Create;
 
-
 class CreateCategoryOutputDto
 {
     public function __construct(
@@ -11,6 +10,6 @@ class CreateCategoryOutputDto
         public string $description = '',
         public bool $isActive = true,
         public string $createdAt = ''
-    ){
+    ) {
     }
 }

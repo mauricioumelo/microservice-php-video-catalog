@@ -2,10 +2,9 @@
 
 namespace Core\Domain\Repository;
 
-
 interface PaginateInterface
 {
-     /**
+    /**
      * @return stdClass[]
      */
     public function items(): array;
@@ -19,8 +18,4 @@ interface PaginateInterface
     public function currentPage(): int;
 
     public function perPage(): int;
-
-    public function to(): int;
-
-    public function from(): int;
 }

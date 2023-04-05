@@ -3,24 +3,13 @@ version: '3'
 services:
 
     app:
-        build:
-            context: .
-            dockerfile: Dockerfile
-            args:
-                WWWGROUP: '${WWWGROUP}'
-                WWWUSER: '${WWWUSER}'
-
+        build: .
         container_name: microservice-videos-app
         volumes:
             - .:/var/www
             - ./.docker/php/custom.ini:/usr/local/etc/php/conf.d/custom.ini
         networks:
             - app-network
-        environment:
-            WWWUSER: '${WWWUSER}'
-            LARAVEL_SAIL: 1
-            XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
-            XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
         depends_on:
             - db
             - redis

@@ -7,8 +7,6 @@ use Core\Domain\Repository\CategoryRepositoryInterface;
 use Core\UseCase\Category\ListCategoryUseCase;
 use Core\UseCase\DTO\Category\CategoryInputDto;
 use Core\UseCase\DTO\Category\CategoryOutputDto;
-use Core\UseCase\DTO\Category\CreateCategoryInputDto;
-use Core\UseCase\DTO\Category\CreateCategoryOutputDto;
 use DateTime;
 use Mockery;
 use PHPUnit\Framework\TestCase;
@@ -18,10 +16,15 @@ use stdClass;
 class ListCategoryUseCaseUnitTest extends TestCase
 {
     protected $mockEntity;
+
     protected $mockDtoInput;
+
     protected $spyRepo;
+
     protected $mockRepo;
+
     protected $uuid;
+
     protected $date;
 
     public function setUp(): void
@@ -38,7 +41,7 @@ class ListCategoryUseCaseUnitTest extends TestCase
         ]);
 
         $this->mockDtoInput = Mockery::mock(CategoryInputDto::class, [
-            $this->uuid
+            $this->uuid,
         ]);
 
         $this->mockRepo = Mockery::mock(stdClass::class, CategoryRepositoryInterface::class);
@@ -59,7 +62,6 @@ class ListCategoryUseCaseUnitTest extends TestCase
         $responseDto = $useCase->execute($this->mockDtoInput);
 
         $this->assertInstanceOf(CategoryOutputDto::class, $responseDto);
-
 
         $this->spyRepo->shouldReceive('findById')
             ->with($this->uuid)

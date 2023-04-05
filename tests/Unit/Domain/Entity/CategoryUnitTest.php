@@ -63,8 +63,8 @@ class CategoryUnitTest extends TestCase
         $categoryOld = $category;
 
         $category->update([
-            'name'=> "new_name",
-            'description'=> 'this is description of new_name'
+            'name' => 'new_name',
+            'description' => 'this is description of new_name',
         ]);
 
         $this->assertEquals($categoryOld->id(), $category->id());
@@ -82,7 +82,6 @@ class CategoryUnitTest extends TestCase
             name: '',
         );
 
-
         $this->assertTrue(false);
     }
 
@@ -96,7 +95,6 @@ class CategoryUnitTest extends TestCase
             description:random_bytes(256)
         );
 
-
         $this->assertTrue(false);
     }
 
@@ -109,7 +107,6 @@ class CategoryUnitTest extends TestCase
             name: 'nome',
             description:random_bytes(8)
         );
-
 
         $this->assertTrue(false);
     }

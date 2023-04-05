@@ -3,20 +3,22 @@
 namespace Tests\Domain\UseCase\Category;
 
 use Core\Domain\Entity\Category;
-use Core\UseCase\DTO\Category\List\ListCategoriesInputDto;
 use Core\Domain\Repository\CategoryRepositoryInterface;
 use Core\Domain\Repository\PaginateInterface;
 use Core\UseCase\Category\ListCategoriesUseCase;
+use Core\UseCase\DTO\Category\List\ListCategoriesInputDto;
 use Core\UseCase\DTO\Category\List\ListCategoriesOutputDto;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 
 class ListCategoriesUseCaseUnitTest extends TestCase
 {
-
     protected $mockDtoInput;
+
     protected $spyRepo;
+
     protected $mockRepo;
+
     protected $mockPaginate;
 
     public function setUp(): void
@@ -65,7 +67,6 @@ class ListCategoriesUseCaseUnitTest extends TestCase
         $this->spyRepo->shouldHaveReceived('paginate');
     }
 
-
     public function test_list_categories(): void
     {
         $this->mockPaginate(
@@ -75,7 +76,7 @@ class ListCategoriesUseCaseUnitTest extends TestCase
                 ),
                 new Category(
                     'segunda'
-                )
+                ),
             ],
             total: 2,
             last_page: 1,
@@ -113,7 +114,7 @@ class ListCategoriesUseCaseUnitTest extends TestCase
         $useCase->execute($this->mockDtoInput);
         $this->spyRepo->shouldHaveReceived('paginate');
     }
-   
+
     protected function mockPaginate(
         array $items,
         int $total,

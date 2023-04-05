@@ -21,8 +21,9 @@ trait MagicMethodsTrait
         foreach ($values as $property => $value) {
             if (isset($this->{$property})) {
                 $this->{$property} = $value;
-                if (isset($this->validate)) $this->validate();
-               
+                if (isset($this->validate)) {
+                    $this->validate();
+                }
             }
         }
     }
@@ -34,6 +35,6 @@ trait MagicMethodsTrait
 
     public function createdAt(): string
     {
-        return (string) $this->createdAt->format("Y-m-d H:i:s");
+        return (string) $this->createdAt->format('Y-m-d H:i:s');
     }
 }

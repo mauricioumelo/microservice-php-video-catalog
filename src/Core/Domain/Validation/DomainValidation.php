@@ -9,9 +9,9 @@ class DomainValidation
     protected static function message(string $rule, string $nameProperty)
     {
         $messages = [
-            'required'=> fn ($nameProperty): string =>"field ".$nameProperty. " is required",
-            'max'=> fn ($nameProperty): string => "field ".$nameProperty." has exceeded the character limit",
-            'min'=> fn ($nameProperty): string => "field ".$nameProperty." does not have the minimum characters",
+            'required' => fn ($nameProperty): string => 'field '.$nameProperty.' is required',
+            'max' => fn ($nameProperty): string => 'field '.$nameProperty.' has exceeded the character limit',
+            'min' => fn ($nameProperty): string => 'field '.$nameProperty.' does not have the minimum characters',
         ];
 
         return $messages[$rule];
@@ -26,14 +26,14 @@ class DomainValidation
 
     public static function max(string $value, int $max)
     {
-        if (!empty($value) && strlen($value) > $max) {
+        if (! empty($value) && strlen($value) > $max) {
             return true;
         }
     }
 
    public static function min(string $value, int $min)
    {
-       if (!empty($value) && strlen($value) < $min) {
+       if (! empty($value) && strlen($value) < $min) {
            return true;
        }
    }
@@ -45,16 +45,17 @@ class DomainValidation
 
             foreach ($rules as $rule) {
                 if (str_contains($rule, ':')) {
-                    list($rule, $valueRule) = explode(':', $rule);
+                    [$rule, $valueRule] = explode(':', $rule);
 
                     if (self::$rule($data[$property], $valueRule)) {
-                        throw new EntityValidationException(isset($messages[$property . '.' . $rule]) ? $messages[$property . '.' . $rule] : DomainValidation::message($rule, $property));
+                        throw new EntityValidationException(isset($messages[$property.'.'.$rule]) ? $messages[$property.'.'.$rule] : DomainValidation::message($rule, $property));
                     }
+
                     continue;
                 }
 
                 if (self::$rule($data[$property])) {
-                    throw new EntityValidationException($messages[$property . '.' . $rule]);
+                    throw new EntityValidationException($messages[$property.'.'.$rule]);
                 }
             }
         }

@@ -6,7 +6,7 @@ use Core\Domain\Repository\CategoryRepositoryInterface;
 use Core\UseCase\DTO\Category\CategoryInputDto;
 use Core\UseCase\DTO\Category\Delete\DeleteCategoryOutputDto;
 
-class DeleteCategoryUseCase 
+class DeleteCategoryUseCase
 {
     public function __construct(
         protected CategoryRepositoryInterface $repository

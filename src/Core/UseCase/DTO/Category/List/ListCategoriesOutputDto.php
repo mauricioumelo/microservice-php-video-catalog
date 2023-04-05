@@ -2,8 +2,6 @@
 
 namespace Core\UseCase\DTO\Category\List;
 
-use Core\Domain\Repository\PaginateInterface;
-
 class ListCategoriesOutputDto
 {
     public function __construct(
