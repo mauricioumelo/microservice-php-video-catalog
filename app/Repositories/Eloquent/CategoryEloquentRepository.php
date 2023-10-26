@@ -74,7 +74,7 @@ class CategoryEloquentRepository implements CategoryRepositoryInterface
     public function update(Category $category): Category
     {
         $model = $this->model->find($category->id());
-        
+
         $model->update([
             'name' => $category->name,
             'description' => $category->description,
@@ -87,7 +87,11 @@ class CategoryEloquentRepository implements CategoryRepositoryInterface
 
     public function delete(string $id): bool
     {
-        return $this->model->find($id)->delete();
+        if (! $category = $this->model->find($id)) {
+            throw new NotFoundException('Category not found', 404);
+        }
+
+        return $this->model->find($category->id)->delete();
     }
 
     public function toCategory(object $data): Category
@@ -96,7 +100,7 @@ class CategoryEloquentRepository implements CategoryRepositoryInterface
             id: $data->id,
             name: $data->name,
             description: $data->description,
-            isActive: $data->is_active,
+            isActive: (bool) $data->is_active,
             createdAt: $data->created_at,
         );
     }

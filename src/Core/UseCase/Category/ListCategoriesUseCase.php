@@ -29,8 +29,6 @@ class ListCategoriesUseCase
             first_page: $categories->firstPage(),
             current_page: $categories->currentPage(),
             per_page: $categories->perPage(),
-            to: $categories->to(),
-            from: $categories->from(),
         );
     }
 }

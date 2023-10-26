@@ -18,8 +18,8 @@ class PaginationPresenter implements PaginateInterface
      */
     public function items(): array
     {
-        return collect($this->paginator->items())->map(function($item){
-            return (object)$item->toArray();
+        return collect($this->paginator->items())->map(function ($item) {
+            return (object) $item->toArray();
         })->toArray();
     }
 
@@ -30,12 +30,12 @@ class PaginationPresenter implements PaginateInterface
 
     public function lastPage(): int
     {
-        return $this->paginator->lastPage();
+        return $this->paginator->lastPage() ?? 0;
     }
 
     public function firstPage(): int
     {
-        return $this->paginator->firstItem();
+        return $this->paginator->firstItem() ?? 0;
     }
 
     public function currentPage(): int

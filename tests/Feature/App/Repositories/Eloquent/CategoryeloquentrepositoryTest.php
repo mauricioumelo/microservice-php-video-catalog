@@ -177,7 +177,6 @@ class CategoryEloquentRepositoryTest extends TestCase
 
         $category = Model::factory(4)->create()->first();
 
-
         $entity = $repository->findById('2325126');
 
         $entity->update([
@@ -192,12 +191,25 @@ class CategoryEloquentRepositoryTest extends TestCase
     {
         $repository = $this->repository;
 
-        $category = Model::factory(4)->create()->first();
+        $category = Model::factory(1)->create()->first();
 
         $response = $repository->delete($category->id);
 
         $this->assertInstanceOf(CategoryRepositoryInterface::class, $repository);
         $this->assertTrue($response);
         $this->assertDatabaseMissing('categories', ['id' => $category->id, 'deleted_at' => null]);
+    }
+
+    public function test_delete_category_not_found(): void
+    {
+        $this->expectException(NotFoundException::class);
+        $this->expectExceptionMessage('Category not found');
+        $this->expectExceptionCode(404);
+
+        $repository = $this->repository;
+
+        $category = Model::factory(1)->create()->first();
+
+        $response = $repository->delete('fake_id');
     }
 }

@@ -38,8 +38,6 @@ class ListCategoriesUseCaseUnitTest extends TestCase
             first_page: 1,
             current_page: 1,
             per_page: 0,
-            to: 1,
-            from: 1
         );
 
         $this->mockRepo
@@ -82,9 +80,7 @@ class ListCategoriesUseCaseUnitTest extends TestCase
             last_page: 1,
             first_page: 1,
             current_page: 1,
-            per_page: 2,
-            to: 1,
-            from: 1
+            per_page: 2
         );
 
         $this->mockRepo
@@ -100,8 +96,6 @@ class ListCategoriesUseCaseUnitTest extends TestCase
         $this->assertEquals(1, $responseDto->last_page);
         $this->assertEquals(1, $responseDto->first_page);
         $this->assertEquals(2, $responseDto->per_page);
-        $this->assertEquals(1, $responseDto->to);
-        $this->assertEquals(1, $responseDto->from);
 
         /**
          * Spies
@@ -122,8 +116,6 @@ class ListCategoriesUseCaseUnitTest extends TestCase
         int $first_page,
         int $current_page,
         int $per_page,
-        int $to,
-        int $from,
     ) {
         $this->mockPaginate
             ->shouldReceive('items')
@@ -148,14 +140,6 @@ class ListCategoriesUseCaseUnitTest extends TestCase
         $this->mockPaginate
             ->shouldReceive('perPage')
             ->andReturn($per_page);
-
-        $this->mockPaginate
-            ->shouldReceive('to')
-            ->andReturn($to);
-
-        $this->mockPaginate
-            ->shouldReceive('from')
-            ->andReturn($from);
     }
 
     public function tearDown(): void
