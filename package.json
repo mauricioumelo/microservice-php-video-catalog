@@ -4,24 +4,10 @@
         "dev": "vite",
         "build": "vite build"
     },
-    "husky": {
-        "hooks": {
-            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-            "prepare-commit-msg": "exec < /dev/tty && npx cz --hook || true"
-        }
-    },
+    
     "devDependencies": {
         "axios": "^1.1.2",
         "laravel-vite-plugin": "^0.7.2",
-        "vite": "^4.0.0",
-        "@commitlint/cli": "^17.4.2",
-        "@commitlint/config-conventional": "^17.4.2",
-        "cz-conventional-changelog": "^3.3.0",
-        "husky": "^8.0.3"
-    },
-    "config": {
-        "commitizen": {
-            "path": "./node_modules/cz-conventional-changelog"
-        }
+        "vite": "^4.0.0"
     }
 }
