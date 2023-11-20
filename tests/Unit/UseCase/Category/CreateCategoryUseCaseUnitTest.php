@@ -67,4 +67,11 @@ class CreateCategoryUseCaseUnitTest extends TestCase
         $responseDto = $useCase->execute($this->mockDtoInput);
         $this->spyRepo->shouldHaveReceived('create')->once();
     }
+
+    public function tearDown(): void
+    {
+        Mockery::close();
+
+        parent::tearDown();
+    }
 }
