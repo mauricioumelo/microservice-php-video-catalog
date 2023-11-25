@@ -77,10 +77,9 @@ class UpdateCategoryUseCaseUnitTest extends TestCase
             UpdateCategoryInputDto::class,
             [
                 $this->uuid,
-                [
-                    'name' => 'Category updated',
-                    'description' => 'description updated',
-                ],
+                'Category updated',
+                'description updated',
+
             ]
         );
 
