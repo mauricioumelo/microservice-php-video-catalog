@@ -20,11 +20,9 @@ class UpdateCategoryUseCaseTest extends TestCase
 
         $response = $useCase->execute(
             new UpdateCategoryInputDto(
-                id:$category->id,
-                data:[
-                    'name'=> 'alter name',
-                    'description'=> 'alter description',
-                ]
+                id: $category->id,
+                name: 'alter name',
+                description: 'alter description',
             )
         );
 
