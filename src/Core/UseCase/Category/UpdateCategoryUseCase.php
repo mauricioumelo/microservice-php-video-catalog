@@ -17,12 +17,18 @@ class UpdateCategoryUseCase
     {
         $category = $this->repository->findById($input->id);
 
-        $category->update($input->data);
+        $category->update(
+            [
+                'name' => $input->name,
+                'description' => $input->description ?? $category->is_active,
+                'isActive' => (bool) $input->isActive ?? $category->description
+            ]
+        );
 
         $categoryUpdate = $this->repository->update(category: $category);
 
         return new CategoryOutputDto(
-            id:$categoryUpdate->id(),
+            id: $categoryUpdate->id(),
             name: $categoryUpdate->name,
             description: $categoryUpdate->description,
             is_active: $categoryUpdate->isActive,
