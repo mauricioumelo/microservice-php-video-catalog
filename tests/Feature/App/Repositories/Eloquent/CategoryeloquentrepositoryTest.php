@@ -53,7 +53,7 @@ class CategoryEloquentRepositoryTest extends TestCase
     public function test_find_by_id_fail(): void
     {
         $this->expectException(NotFoundException::class);
-        $this->expectExceptionMessage('Category not found in data base');
+        $this->expectExceptionMessage('Category Not Found');
         $this->expectExceptionCode(404);
 
         $repository = $this->repository;
@@ -170,7 +170,7 @@ class CategoryEloquentRepositoryTest extends TestCase
     public function test_update_category_not_found(): void
     {
         $this->expectException(NotFoundException::class);
-        $this->expectExceptionMessage('Category not found in data base');
+        $this->expectExceptionMessage('Category Not Found');
         $this->expectExceptionCode(404);
 
         $repository = $this->repository;
@@ -197,13 +197,13 @@ class CategoryEloquentRepositoryTest extends TestCase
 
         $this->assertInstanceOf(CategoryRepositoryInterface::class, $repository);
         $this->assertTrue($response);
-        $this->assertDatabaseMissing('categories', ['id' => $category->id, 'deleted_at' => null]);
+        $this->assertSoftDeleted('categories', ['id' => $category->id]);
     }
 
     public function test_delete_category_not_found(): void
     {
         $this->expectException(NotFoundException::class);
-        $this->expectExceptionMessage('Category not found');
+        $this->expectExceptionMessage('Category Not Found');
         $this->expectExceptionCode(404);
 
         $repository = $this->repository;
