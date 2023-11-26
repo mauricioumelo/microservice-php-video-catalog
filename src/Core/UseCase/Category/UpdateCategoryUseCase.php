@@ -18,11 +18,7 @@ class UpdateCategoryUseCase
         $category = $this->repository->findById($input->id);
 
         $category->update(
-            [
-                'name' => $input->name,
-                'description' => $input->description ?? $category->is_active,
-                'isActive' => (bool) $input->isActive ?? $category->description
-            ]
+            $input->getdata()
         );
 
         $categoryUpdate = $this->repository->update(category: $category);
