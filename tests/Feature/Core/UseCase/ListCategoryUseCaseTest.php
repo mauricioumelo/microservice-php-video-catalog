@@ -15,7 +15,7 @@ class ListCategoryUseCaseTest extends TestCase
     public function test_list_category_not_found(): void
     {
         $this->expectException(NotFoundException::class);
-        $this->expectExceptionMessage('Category not found in data base');
+        $this->expectExceptionMessage('Category Not Found');
         $this->expectExceptionCode(404);
 
         $response = $this->createUseCase();
@@ -39,7 +39,7 @@ class ListCategoryUseCaseTest extends TestCase
         $useCase = new ListCategoryUseCase($repository);
 
         return $useCase->execute(
-            new CategoryInputDto(id:$id)
+            new CategoryInputDto(id: $id)
         );
     }
 }

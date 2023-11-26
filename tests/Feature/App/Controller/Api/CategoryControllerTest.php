@@ -92,7 +92,7 @@ class CategoryControllerTest extends TestCase
         $request->setJson(new ParameterBag([
             'name' => 'test update category',
             'description' => 'test update description',
-            'isActive' => false
+            'is_active' => false
         ]));
 
         $response = $this->controller->update(
@@ -100,6 +100,7 @@ class CategoryControllerTest extends TestCase
             useCase: $useCase,
             id: $category->id,
         );
+
 
         $this->assertInstanceOf(JsonResponse::class, $response);
         $this->assertEquals(Response::HTTP_OK, $response->status());
@@ -118,6 +119,6 @@ class CategoryControllerTest extends TestCase
         $response = $this->controller->destroy(id: $category->id, useCase: $useCase);
 
         $this->assertEquals(Response::HTTP_NO_CONTENT, $response->status());
-        $this->assertDatabaseMissing('categories', ['id' => $category->id, 'deleted_at' => null]);
+        $this->assertSoftDeleted('categories', ['id' => $category->id]);
     }
 }

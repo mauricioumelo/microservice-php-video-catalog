@@ -82,7 +82,13 @@ class UpdateCategoryUseCaseUnitTest extends TestCase
 
             ]
         );
+        $this->mockDtoInput->shouldReceive('getData')
+            ->andReturn([
+                'id' => $this->uuid,
+                'name' => 'Category updated',
+                'description' => 'description updated',
 
+            ]);;
         $useCase = new UpdateCategoryUseCase($this->mockRepo);
         $responseDto = $useCase->execute($this->mockDtoInput);
         $this->assertInstanceOf(CategoryOutputDto::class, $responseDto);
