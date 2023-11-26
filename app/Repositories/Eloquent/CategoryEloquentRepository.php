@@ -65,7 +65,7 @@ class CategoryEloquentRepository implements CategoryRepositoryInterface
     public function findById(string $id): Category
     {
         if (!$category = $this->model->find($id)) {
-            throw new NotFoundException('Category not found in data base', 404);
+            throw new NotFoundException('Category Not Found', 404);
         }
 
         return $this->toCategory($category);
@@ -88,7 +88,7 @@ class CategoryEloquentRepository implements CategoryRepositoryInterface
     public function delete(string $id): bool
     {
         if (!$category = $this->model->find($id)) {
-            throw new NotFoundException('Category not found', 404);
+            throw new NotFoundException('Category Not Found', 404);
         }
 
         return $category->delete();
