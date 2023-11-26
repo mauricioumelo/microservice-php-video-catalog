@@ -13,7 +13,7 @@ RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd sockets
 
 RUN usermod -u 1000 www-data
 
-WORKDIR /var/www
+WORKDIR /var/www/html
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
