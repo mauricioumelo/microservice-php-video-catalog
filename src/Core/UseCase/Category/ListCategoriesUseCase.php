@@ -24,11 +24,12 @@ class ListCategoriesUseCase
 
         return new ListCategoriesOutputDto(
             items: $categories->items(),
-            total: $categories->total(),
-            last_page: $categories->lastPage(),
-            first_page: $categories->firstPage(),
             current_page: $categories->currentPage(),
+            links: $categories->getLinks(),
+            pagination_info: $categories->getPaginationInfo(),
             per_page: $categories->perPage(),
+            total_items: $categories->totalItems(),
+            total_pages: $categories->totalPages(),
         );
     }
 }

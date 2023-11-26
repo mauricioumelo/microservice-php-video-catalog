@@ -45,11 +45,12 @@ class CategoryController extends Controller
         )
             ->additional([
                 'meta' => [
-                    'total' => $response->total,
-                    'last_page' => $response->last_page,
-                    'first_page' => $response->first_page,
                     'current_page' => $response->current_page,
+                    'links' => $response->links,
+                    'pagination_info' => $response->pagination_info,
                     'per_page' => $response->per_page,
+                    'total_items' => $response->total_items,
+                    'total_pages' => $response->total_pages,
                 ],
             ]);
     }
@@ -64,7 +65,7 @@ class CategoryController extends Controller
             )
         );
 
-        return (new CategoryResource(collect($response)))
+        return (new CategoryResource($response))
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
     }
@@ -77,7 +78,7 @@ class CategoryController extends Controller
             )
         );
 
-        return (new CategoryResource(collect($category)))
+        return (new CategoryResource($category))
             ->response()
             ->setStatusCode(Response::HTTP_OK);
     }
@@ -94,7 +95,7 @@ class CategoryController extends Controller
             )
         );
 
-        return (new CategoryResource(collect($response)))
+        return (new CategoryResource($response))
             ->response()
             ->setStatusCode(Response::HTTP_OK);
     }

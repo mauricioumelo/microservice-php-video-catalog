@@ -6,11 +6,12 @@ class ListCategoriesOutputDto
 {
     public function __construct(
         public array $items,
-        public int $total,
-        public int $last_page,
-        public int $first_page,
         public int $current_page,
+        public array $links,
+        public array $pagination_info,
         public int $per_page,
+        public int $total_items,
+        public int $total_pages,
     ) {
     }
 }
