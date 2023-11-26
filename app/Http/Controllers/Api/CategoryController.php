@@ -99,7 +99,7 @@ class CategoryController extends Controller
             ->setStatusCode(Response::HTTP_OK);
     }
 
-    public function destroy(string $id, DeleteCategoryUseCase $useCase): JsonResponse
+    public function destroy(string $id, DeleteCategoryUseCase $useCase): Response
     {
         $response = $useCase->execute(
             input: new CategoryInputDto(id: $id)

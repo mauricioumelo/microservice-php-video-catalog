@@ -20,7 +20,7 @@ class DeleteCategoryUseCase
         $success = $this->repository->delete(id: $category->id());
 
         return new DeleteCategoryOutputDto(
-            success:$success
+            success: $success
         );
     }
 }

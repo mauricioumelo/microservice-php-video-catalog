@@ -118,6 +118,6 @@ class CategoryControllerTest extends TestCase
         $response = $this->controller->destroy(id: $category->id, useCase: $useCase);
 
         $this->assertEquals(Response::HTTP_NO_CONTENT, $response->status());
-        $this->assertDatabaseMissing('categories', ['id' => $category->id]);
+        $this->assertDatabaseMissing('categories', ['id' => $category->id, 'deleted_at' => null]);
     }
 }

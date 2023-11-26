@@ -20,7 +20,7 @@ class CategoryEloquentRepository implements CategoryRepositoryInterface
     {
         $categories = $this->model
             ->where(function ($query) use ($filters) {
-                if (! empty($filters)) {
+                if (!empty($filters)) {
                     $query->orWhere('name', 'LIKE', "%{$filters}%")
                         ->orWhere('description', 'LIKE', "%{$filters}%");
                 }
@@ -39,12 +39,12 @@ class CategoryEloquentRepository implements CategoryRepositoryInterface
     {
         $categories = $this->model
             ->where(function ($query) use ($filters) {
-                if (! empty($filters)) {
+                if (!empty($filters)) {
                     $query->orWhere('name', 'LIKE', "%{$filters}%")
                         ->orWhere('description', 'LIKE', "%{$filters}%");
                 }
             })
-            ->orderBy('id', $order)->paginate(perPage:$limit, page:$page);
+            ->orderBy('id', $order)->paginate(perPage: $limit, page: $page);
 
         return new PaginationPresenter(paginator: $categories);
     }
@@ -64,7 +64,7 @@ class CategoryEloquentRepository implements CategoryRepositoryInterface
 
     public function findById(string $id): Category
     {
-        if (! $category = $this->model->find($id)) {
+        if (!$category = $this->model->find($id)) {
             throw new NotFoundException('Category not found in data base', 404);
         }
 
@@ -87,11 +87,11 @@ class CategoryEloquentRepository implements CategoryRepositoryInterface
 
     public function delete(string $id): bool
     {
-        if (! $category = $this->model->find($id)) {
+        if (!$category = $this->model->find($id)) {
             throw new NotFoundException('Category not found', 404);
         }
 
-        return $this->model->find($category->id)->delete();
+        return $category->delete();
     }
 
     public function toCategory(object $data): Category
