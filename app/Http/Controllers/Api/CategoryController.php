@@ -60,8 +60,8 @@ class CategoryController extends Controller
         $response = $useCase->execute(
             input: new CreateCategoryInputDto(
                 name: $request->name,
-                description: (string) $request->description ?? '',
-                isActive: (bool) $request->isActive ?? true
+                description: $request->description ?? '',
+                isActive: $request->is_active ?? true
             )
         );
 
@@ -89,9 +89,8 @@ class CategoryController extends Controller
             input: new UpdateCategoryInputDto(
                 id: $id,
                 name: $request->name,
-                description: (string) $request->description ?? '',
-                isActive: (bool) $request->isActive ?? true
-
+                description: $request->description ?? null,
+                isActive: $request->is_active
             )
         );
 
