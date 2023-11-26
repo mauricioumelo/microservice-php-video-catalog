@@ -33,11 +33,12 @@ class ListCategoriesUseCaseUnitTest extends TestCase
     {
         $this->mockPaginate(
             items: [],
-            total: 0,
-            last_page: 1,
-            first_page: 1,
             current_page: 1,
+            links: [],
             per_page: 0,
+            pagination_info: [],
+            total_items: 0,
+            total_pages: 1,
         );
 
         $this->mockRepo
@@ -49,8 +50,7 @@ class ListCategoriesUseCaseUnitTest extends TestCase
 
         $this->assertInstanceOf(ListCategoriesOutputDto::class, $responseDto);
         $this->assertCount(0, $responseDto->items);
-        $this->assertEquals(1, $responseDto->last_page);
-        $this->assertEquals(1, $responseDto->first_page);
+        $this->assertEquals(1, $responseDto->total_pages);
         $this->assertEquals(0, $responseDto->per_page);
 
         /**
@@ -76,9 +76,10 @@ class ListCategoriesUseCaseUnitTest extends TestCase
                     'segunda'
                 ),
             ],
-            total: 2,
-            last_page: 1,
-            first_page: 1,
+            total_items: 2,
+            total_pages: 1,
+            pagination_info: [],
+            links: [],
             current_page: 1,
             per_page: 2
         );
@@ -93,8 +94,8 @@ class ListCategoriesUseCaseUnitTest extends TestCase
         $this->assertInstanceOf(ListCategoriesOutputDto::class, $responseDto);
         $this->assertCount(2, $responseDto->items);
         $this->assertInstanceOf(Category::class, $responseDto->items[1]);
-        $this->assertEquals(1, $responseDto->last_page);
-        $this->assertEquals(1, $responseDto->first_page);
+        $this->assertEquals(1, $responseDto->total_pages);
+        $this->assertEquals(2, $responseDto->total_items);
         $this->assertEquals(2, $responseDto->per_page);
 
         /**
@@ -111,27 +112,32 @@ class ListCategoriesUseCaseUnitTest extends TestCase
 
     protected function mockPaginate(
         array $items,
-        int $total,
-        int $last_page,
-        int $first_page,
         int $current_page,
+        array $links,
+        array $pagination_info,
         int $per_page,
+        int $total_items,
+        int $total_pages,
     ) {
         $this->mockPaginate
             ->shouldReceive('items')
             ->andReturn($items);
 
         $this->mockPaginate
-            ->shouldReceive('total')
-            ->andReturn($total);
+            ->shouldReceive('totalItems')
+            ->andReturn($total_items);
 
         $this->mockPaginate
-            ->shouldReceive('lastPage')
-            ->andReturn($last_page);
+            ->shouldReceive('totalPages')
+            ->andReturn($total_pages);
 
         $this->mockPaginate
-            ->shouldReceive('firstPage')
-            ->andReturn($first_page);
+            ->shouldReceive('getPaginationInfo')
+            ->andReturn($pagination_info);
+
+        $this->mockPaginate
+            ->shouldReceive('getLinks')
+            ->andReturn($links);
 
         $this->mockPaginate
             ->shouldReceive('currentPage')

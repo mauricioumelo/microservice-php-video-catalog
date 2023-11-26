@@ -142,7 +142,7 @@ class CategoryEloquentRepositoryTest extends TestCase
         $this->assertInstanceOf(CategoryRepositoryInterface::class, $repository);
         $this->assertInstanceOf(PaginateInterface::class, $response);
         $this->assertEmpty($response->items());
-        $this->assertEquals(0, $response->total());
+        $this->assertEquals(0, $response->totalItems());
     }
 
     public function test_update_category(): void

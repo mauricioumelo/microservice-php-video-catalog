@@ -21,7 +21,7 @@ class ListCategoriesUseCaseTest extends TestCase
         $response = $this->createUseCase();
 
         $this->assertInstanceOf(ListCategoriesOutputDto::class, $response);
-        $this->assertEquals(50, $response->total);
+        $this->assertEquals(50, $response->total_items);
         $this->assertEquals(1, $response->current_page);
         $this->assertCount(15, $response->items);
     }
@@ -31,7 +31,7 @@ class ListCategoriesUseCaseTest extends TestCase
         $response = $this->createUseCase();
 
         $this->assertInstanceOf(ListCategoriesOutputDto::class, $response);
-        $this->assertEquals(0, $response->total);
+        $this->assertEquals(0, $response->total_items);
         $this->assertEquals(1, $response->current_page);
         $this->assertCount(0, $response->items);
     }
